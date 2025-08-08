@@ -19,6 +19,7 @@ starting_debt_year_1 = STARTING_DEBT - (AMOUNT_SAVED * MARKET_RETURN_RATE + INCO
 starting_debt_year_2 = STARTING_DEBT - (AMOUNT_SAVED * (MARKET_RETURN_RATE**2) + INCOME_PER_YEAR * MARKET_RETURN_RATE + INCOME_PER_YEAR)
 
 list_of_years = [starting_debt_year_0, starting_debt_year_1, starting_debt_year_2]
+final_list = []
 
 for current_debt in list_of_years:
     total_cost_list = []
@@ -30,4 +31,18 @@ for current_debt in list_of_years:
         if current_debt < 0:
             current_debt = 0
         total_cost_list.append(current_calculated)
-    print(total_cost_list)
+    final_list.append(total_cost_list)
+
+
+# Plot each scenario as a line on the same graph
+for index, cost_list in enumerate(final_list):
+    plt.plot(range(1, YEARS_TO_COMPARE + 1), cost_list, label=f"Buy Year {index}")
+
+plt.xlabel('Year')
+plt.ylabel('Total Cost')
+plt.title('Total Cost Over Time for Different Scenarios')
+plt.ticklabel_format(style='plain', axis='y')
+plt.legend()
+plt.grid(True)
+plt.show()
+    
