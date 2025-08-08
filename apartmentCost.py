@@ -45,4 +45,20 @@ plt.ticklabel_format(style='plain', axis='y')
 plt.legend()
 plt.grid(True)
 plt.show()
-    
+
+money_saved_on_rent_list = [[],[]]
+for index in range(YEARS_TO_COMPARE):
+    money_saved_on_rent_list[0].append(final_list[0][index] - final_list[1][index])
+    money_saved_on_rent_list[1].append(final_list[0][index] - final_list[2][index])
+print(money_saved_on_rent_list)
+
+for index, saved_list in enumerate(money_saved_on_rent_list):
+    plt.plot(range(1, YEARS_TO_COMPARE + 1), saved_list, label=f"Buy Year {index + 1}")
+
+plt.xlabel('Year')
+plt.ylabel('Total saved on rent')
+plt.title('Total saved Over Time for Different Scenarios')
+plt.ticklabel_format(style='plain', axis='y')
+plt.legend()
+plt.grid(True)
+plt.show()
